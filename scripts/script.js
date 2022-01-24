@@ -21,11 +21,15 @@ const captureData = () => {
     } */
   let newObj = { precio, nombre, fecha, cantidad };
 
-  window.localStorage.setItem(id, JSON.stringify(newObj));
-  console.log("Guardado correctamente");
+
   Object.keys(localStorage).forEach((key) => {
+    if(id == key){
+        id++;
+    }
     console.log("key", key);
   });
+  window.localStorage.setItem(id, JSON.stringify(newObj));
+  console.log("Guardado correctamente");
 };
 
 const removeRow = (id) => {
