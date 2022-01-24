@@ -20,15 +20,16 @@ const captureData = () => {
   /* let newObj = {"id":id,"nombre":nombre,"precio":precio,"fecha":fecha,"cantidad":cantidad
     } */
   let newObj = { precio, nombre, fecha, cantidad };
- 
+
   window.localStorage.setItem(id, JSON.stringify(newObj));
   console.log("Guardado correctamente");
   Object.keys(localStorage).forEach((key) => {
-    console.log("key",key)});
+    console.log("key", key);
+  });
 };
 
 const removeRow = (id) => {
-    console.log("se ingreso a eliminar");
+  console.log("se ingreso a eliminar");
   window.localStorage.removeItem(id);
   listarObj();
 };
@@ -38,30 +39,28 @@ const listarObj = () => {
     console.log(listaObj); */
   let lineaTexto = document.getElementById("listarAlimento");
   /* let iterador = localStorage.length; */
-  
+
   lineaTexto.innerHTML = "";
   if (localStorage.length <= 0) {
     return console.log("No hay objetos guardados");
   } else {
-      //Object keys, nos devuelve las llaves que existen en el objeto 
-      //Asi que evitamos caer en los null
+    //Object keys, nos devuelve las llaves que existen en el objeto
+    //Asi que evitamos caer en los null
     Object.keys(localStorage).forEach((key) => {
-        //console.log(localStorage.getItem(key));
-        let obj = localStorage.getItem(key);
-      
-        obj = JSON.parse(obj);
-        console.log(obj);
-        let { nombre, precio, fecha, cantidad } = obj;
-        lineaTexto.innerHTML += `
+      //console.log(localStorage.getItem(key));
+      let obj = localStorage.getItem(key);
+
+      obj = JSON.parse(obj);
+      console.log(obj);
+      let { nombre, precio, fecha, cantidad } = obj;
+      lineaTexto.innerHTML += `
             <td>${nombre}</td>
             <td>${precio}</td>
             <td>${fecha}</td>
             <td>${cantidad}</td>
             <td><button class="btn btn-danger" onclick="removeRow(${key})" >Eliminar</button></td>
             `;
-      
-     });
-    
+    });
   } /* console.log(JSON.parse(window.localStorage.getItem(1))); */
 };
 window.onload = listarObj();
