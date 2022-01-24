@@ -29,8 +29,16 @@ const captureData = () => {
     console.log("key", key);
   });
   window.localStorage.setItem(id, JSON.stringify(newObj));
-  console.log("Guardado correctamente");
+  alert("Guardado correctamente");
+  limpiarForm();
+  
 };
+const limpiarForm = () => {
+    document.getElementById("nombre").value = ""
+    document.getElementById("precio").value = ""
+    document.getElementById("fecha").value = ""
+    document.getElementById("cantidad").value = ""
+}
 
 const removeRow = (id) => {
   console.log("se ingreso a eliminar");
