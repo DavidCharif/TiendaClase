@@ -43,8 +43,10 @@ const listarObj = () => {
   if (localStorage.length <= 0) {
     return console.log("No hay objetos guardados");
   } else {
+      //Object keys, nos devuelve las llaves que existen en el objeto 
+      //Asi que evitamos caer en los null
     Object.keys(localStorage).forEach((key) => {
-        console.log(localStorage.getItem(key));
+        //console.log(localStorage.getItem(key));
         let obj = localStorage.getItem(key);
       
         obj = JSON.parse(obj);
