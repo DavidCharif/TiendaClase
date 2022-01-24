@@ -21,7 +21,7 @@ const captureData = () => {
     } */
   let newObj = { precio, nombre, fecha, cantidad };
 
-
+    //Especificamos que el id no exista como llave previa, si es asi, le sumamos un digito. 
   Object.keys(localStorage).forEach((key) => {
     if(id == key){
         id++;
