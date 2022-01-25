@@ -16,7 +16,7 @@ const captureData = () => {
   //
   let id = localStorage.length;
   // crear arreglo vacio
-
+nombre = nombre.toLowerCase();
   /* let newObj = {"id":id,"nombre":nombre,"precio":precio,"fecha":fecha,"cantidad":cantidad
     } */
   let newObj = { precio, nombre, fecha, cantidad };
@@ -75,4 +75,30 @@ const listarObj = () => {
     });
   } /* console.log(JSON.parse(window.localStorage.getItem(1))); */
 };
+
+const busqueda = () => {
+    //Se extrae el input
+    let input = document.getElementById("inputBuscar").value;
+    let busqueda = document.getElementById("busqueda");
+    //Se pasa a minusculas
+    input = input.toLowerCase()
+    // Se deja en blanco cada nueva busqueda
+    busqueda.innerHTML = "";
+    //Se intera por los valores
+    Object.values(localStorage).forEach((array)=>{
+        // Se pasan a objetos
+        let parseArray =  JSON.parse(array)
+        // Preguntamos si el input esta incluido
+        if(parseArray.nombre.includes(input)){
+            console.log('parseArray', parseArray);
+            let {cantidad,fecha,nombre,precio} = parseArray;
+            
+                busqueda.innerHTML += `
+                                    <div style="color:white;">Cantidad : ${cantidad}</div>
+                                    <div style="color:white;">Fecha : ${fecha}</div>
+                                    <div style="color:white;">Nombre : ${nombre}</div>
+                                    <div style="color:white;">Precio : ${precio}</div>` 
+        } 
+    })
+}
 window.onload = listarObj();
